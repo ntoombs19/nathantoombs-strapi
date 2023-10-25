@@ -22,5 +22,13 @@ module.exports = ({ env }) => ({
         },
       }
     },
-  }
+  },
+  sentry: {
+    enabled: true,
+    config: {
+      enabled: env('NODE_ENV') === 'production',
+      dsn: env('NODE_ENV') === 'production' ? env('SENTRY_DSN') : null,
+      sendMetadata: true,
+    },
+  },
 });
