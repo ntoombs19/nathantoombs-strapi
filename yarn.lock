@@ -9339,6 +9339,13 @@ strapi-plugin-sitemap@^3.0.5:
     sitemap "^7.1.0"
     xml2js "^0.5.0"
 
+strapi-plugin-slugify@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/strapi-plugin-slugify/-/strapi-plugin-slugify-2.3.6.tgz#b3988ff9994183464f925c06c1725421249bedf2"
+  integrity sha512-VNLDqD+Y7D2pxoFEbECjEwxFelOSRBi0vqRsoLaY8Durs1QeD3YELmVlBYzum1NKQmp+66lGnxKtQ5OD7aG0nA==
+  dependencies:
+    "@sindresorhus/slugify" "1.1.0"
+
 stream-chain@2.2.5, stream-chain@^2.2.5:
   version "2.2.5"
   resolved "https://registry.npmjs.org/stream-chain/-/stream-chain-2.2.5.tgz"
