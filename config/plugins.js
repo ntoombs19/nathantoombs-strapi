@@ -31,4 +31,19 @@ module.exports = ({ env }) => ({
       sendMetadata: true,
     },
   },
+  slugify: {
+    enabled: true,
+    config: {
+      contentTypes: {
+        article: {
+          field: 'slug',
+          references: 'title',
+        },
+      },
+    },
+  },
+  ckeditor: {
+    enabled: true,
+    resolve: "./src/plugins/strapi-plugin-ckeditor"
+  },
 });
