@@ -57,8 +57,8 @@ module.exports = ({ env }) => ({
         tracing: false,
       },
     },
-    seo: {
-      enabled: true,
-    },
+  },
+  seo: {
+    enabled: true,
   },
 });
