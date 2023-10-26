@@ -362,13 +362,12 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiProjectProject extends Schema.CollectionType {
-  collectionName: 'projects';
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
   info: {
-    singularName: 'project';
-    pluralName: 'projects';
-    displayName: 'Project';
-    description: '';
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'Article';
   };
   options: {
     draftAndPublish: true;
@@ -379,6 +378,18 @@ export interface ApiProjectProject extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    type: Attribute.Enumeration<['project', 'blog post']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'blog post'>;
+    summary: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 24;
+        maxLength: 240;
+      }>;
+    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    thumbnailImage: Attribute.Media & Attribute.Required;
+    mainImage: Attribute.Media & Attribute.Required;
     content: Attribute.RichText &
       Attribute.Required &
       Attribute.CustomField<
@@ -393,13 +404,13 @@ export interface ApiProjectProject extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::project.project',
+      'api::article.article',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::project.project',
+      'api::article.article',
       'oneToOne',
       'admin::user'
     > &
@@ -868,7 +879,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::project.project': ApiProjectProject;
+      'api::article.article': ApiArticleArticle;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::slugify.slug': PluginSlugifySlug;
