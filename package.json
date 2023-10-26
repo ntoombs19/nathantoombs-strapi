@@ -10,9 +10,6 @@
     "strapi": "strapi",
     "env": "doppler secrets download --no-file --format env > .env"
   },
-  "workspaces": [
-    "./src/plugins/strapi-plugin-ckeditor"
-  ],
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.9",
     "@strapi/plugin-graphql": "^4.15.0",
