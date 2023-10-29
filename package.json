@@ -9,7 +9,8 @@
     "build": "strapi build",
     "strapi": "strapi",
     "env": "doppler secrets download --no-file --format env > .env",
-    "sync-from-prod": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_TRANSFER_TOKEN%"
+    "pull-from-prod": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_PULL_TRANSFER_TOKEN%",
+    "push-to-prod": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_PUSH_TRANSFER_TOKEN% --exclude config"
   },
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.9",
@@ -20,7 +21,6 @@
     "@strapi/plugin-users-permissions": "4.14.4",
     "@strapi/provider-upload-aws-s3": "^4.14.4",
     "@strapi/strapi": "4.14.4",
-    "better-sqlite3": "8.6.0",
     "pg": "^8.11.3",
     "strapi-plugin-sitemap": "^3.0.5",
     "strapi-plugin-slugify": "^2.3.6"
