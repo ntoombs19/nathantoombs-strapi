@@ -9,7 +9,8 @@
     "build": "strapi build",
     "strapi": "strapi",
     "env": "doppler secrets download --no-file --format env > .env",
-    "pull": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_PULL_TRANSFER_TOKEN%"
+    "pull": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_PULL_TRANSFER_TOKEN% && dotenv -- cross-var aws s3 cp s3://%AWS_BUCKET_NAME%/ ./public/uploads --recursive && dotenv -- cross-var psql -h %DATABASE_HOST% -p %DATABASE_PORT% -U postgres -d %DATABASE_NAME% -w -c \"UPDATE files SET url = replace(url, 'https://%AWS_BUCKET_NAME%.s3.amazonaws.com', '/uploads'); UPDATE files SET formats = replace(formats::TEXT, 'https://%AWS_BUCKET_NAME%.s3.amazonaws.com', '/uploads')::jsonb;\" ",
+    "db:create": "docker run -d -i --name strapi-db -p 5432:5432 -e POSTGRES_PASSWORD='' postgres"
   },
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.9",
