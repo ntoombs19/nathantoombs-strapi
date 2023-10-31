@@ -9,7 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi",
     "env": "doppler secrets download --no-file --format env > .env",
-    "pull": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_PULL_TRANSFER_TOKEN%",
+    "pull": "dotenv -- cross-var yarn strapi transfer --from https://strapi.nathantoombs.com/admin --from-token %STRAPI_PULL_TRANSFER_TOKEN%"
   },
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.9",
