@@ -368,6 +368,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     singularName: 'article';
     pluralName: 'articles';
     displayName: 'Article';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -378,9 +379,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
-    type: Attribute.Enumeration<['project', 'blog post']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'blog post'>;
     summary: Attribute.Text &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -405,6 +403,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'manyToOne',
       'api::category.category'
     >;
+    slug: Attribute.UID<'api::article.article', 'title'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -584,48 +583,6 @@ export interface PluginUploadFolder extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-  };
-}
-
-export interface PluginSlugifySlug extends Schema.CollectionType {
-  collectionName: 'slugs';
-  info: {
-    singularName: 'slug';
-    pluralName: 'slugs';
-    displayName: 'slug';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    slug: Attribute.Text;
-    count: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::slugify.slug',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::slugify.slug',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    sitemap_exclude: Attribute.Boolean &
-      Attribute.Private &
-      Attribute.DefaultTo<false>;
   };
 }
 
@@ -926,7 +883,6 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
-      'plugin::slugify.slug': PluginSlugifySlug;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;

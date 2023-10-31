@@ -4,7 +4,8 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article"
+    "displayName": "Article",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,15 +16,6 @@
       "type": "string",
       "required": true,
       "minLength": 3
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "project",
-        "blog post"
-      ],
-      "required": true,
-      "default": "blog post"
     },
     "summary": {
       "type": "text",
@@ -37,20 +29,20 @@
       "required": false
     },
     "thumbnailImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "mainImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "content": {
       "type": "customField",
@@ -72,6 +64,10 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "articles"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }
