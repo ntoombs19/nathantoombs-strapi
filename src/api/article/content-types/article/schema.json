@@ -66,6 +66,12 @@
       "repeatable": false,
       "component": "shared.seo",
       "required": false
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
     }
   }
 }

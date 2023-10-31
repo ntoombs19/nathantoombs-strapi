@@ -1,6 +1,6 @@
 module.exports = ({ env }) => ({
   upload: {
-    config: {
+    config: env('NODE_ENV') === 'production' ? {
       provider: 'aws-s3',
       providerOptions: {
         s3Options: {
@@ -20,6 +20,12 @@ module.exports = ({ env }) => ({
         uploadStream: {},
         delete: {},
       }
+    } : {
+      providerOptions: {
+        localServer: {
+          maxage: 300000
+        },
+      },
     },
   },
   sentry: {
