@@ -43,13 +43,17 @@ module.exports = ({ env }) => ({
     config: {
       endpoint: '/graphql',
       shadowCRUD: true,
-      playgroundAlways: false,
+      playgroundAlways: env('NODE_ENV') === 'development',
       depthLimit: 7,
       amountLimit: 100,
       apolloServer: {
+        introspection: env('NODE_ENV') === 'development',
         tracing: false,
       },
     },
+  },
+  "apollo-sandbox": {
+    enabled: env('NODE_ENV') === 'development',
   },
   seo: {
     enabled: true,

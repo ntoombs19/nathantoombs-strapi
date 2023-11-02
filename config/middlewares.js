@@ -21,6 +21,11 @@ module.exports = ({ env }) => [
             'market-assets.strapi.io',
             `https://${env('AWS_BUCKET_NAME')}.s3.amazonaws.com`,
           ],
+          'frame-src': [
+            `http://${env('APP_HOST')}:${env('HOST_PORT')}`,
+            "self",
+            "sandbox.embed.apollographql.com",
+          ],
           upgradeInsecureRequests: null,
         },
       },
